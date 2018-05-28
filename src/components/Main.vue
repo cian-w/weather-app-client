@@ -1,54 +1,35 @@
 <template>
-  <div v-if="gotForecast">{{this.location.name}}{{this.forecast.currently.temperature}}</div>
+  <div class="main-wrapper">
+    <current :currentWeather="this.forecast.currently"></current>
+    </div>
+  </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Current from './Sections/Current.vue'
 
 export default {
   name: 'Main',
 
+  components: {
+    Current
+  },
+
   data () {
     return {
-      location: {},
       forecast: {},
       gotForecast: false,
     }
   },
 
   beforeMount () {
-    const options = {
-      enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 0
-    };
-
-    navigator.geolocation.getCurrentPosition(this.getLocation, this.locationError, options);
+    this.getForecast();
   },
 
   methods: {
-    getLocation(position) {
-      this.location.latitude = position.coords.latitude;
-      this.location.longitude = position.coords.longitude;
-
-      axios.get(`http://maps.googleapis.com/maps/api/geocode/json?latlng=${this.location.latitude},${this.location.longitude}&sensor=true`)
-        .then(response => {
-          this.location.name = response.data.results[0].address_components[3].short_name;
-          this.getForecast();
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-
-    locationError(err) {
-      console.log('Error getting location!', err);
-    },
-
     getForecast() {
-      let coords = `${this.location.latitude},${this.location.longitude}`;
-
-      axios.get(`http://localhost:3000/forecast/${coords}`)
+      axios.get(`http://localhost:3000/forecast/51.9280109,-8.5922403`)
         .then(response => {
           this.forecast = response.data;
           this.gotForecast = true;
