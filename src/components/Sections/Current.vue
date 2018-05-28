@@ -1,7 +1,7 @@
 <template>
   <div class="current-wrapper">
-    <div class="current-location">Current Weather</div>
-    <div class="current-temperature">{{this.currentWeather.temperature}}</div>
+    <div class="current-location">Cork</div>
+    <div class="current-temperature">{{this.currentWeather.temperature}}°C</div>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
     return {
 
     }
-  }
+  },
 }
 </script>
 

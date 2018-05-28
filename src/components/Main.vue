@@ -1,6 +1,6 @@
 <template>
   <div class="main-wrapper">
-    <current :currentWeather="this.forecast.currently"></current>
+    <current v-if="gotForecast" :currentWeather="this.forecast.currently"></current>
     </div>
   </div>
 </template>
@@ -32,6 +32,7 @@ export default {
       axios.get(`http://localhost:3000/forecast/51.9280109,-8.5922403`)
         .then(response => {
           this.forecast = response.data;
+          this.forecast.currently.temperature = Math.round(this.forecast.currently.temperature);
           this.gotForecast = true;
         })
         .catch(error => {
