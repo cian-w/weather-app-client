@@ -3,8 +3,8 @@
     <div class="current-location">Cork</div>
     <div class="current-temperature">{{ Math.round(this.currentWeather.temperature) }}°</div>
     <div class="current-summary">{{ this.currentWeather.summary }}</div>
-    <div class="current-wind">{{ Math.round(this.currentWeather.windSpeed) }}km/h</div>
-
+    <div class="current-wind">Wind {{ Math.round(this.currentWeather.windSpeed) }}km/h</div>
+    <div class="current-feels-like">Feels Like {{ Math.round(this.currentWeather.apparentTemperature) }}°</div>
   </div>
 </template>
 
