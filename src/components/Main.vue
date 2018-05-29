@@ -1,9 +1,13 @@
 <template>
   <div class="main-wrapper" v-bind:class="{ loading: !gotForecast }">
-    <div class="current-location" v-if="!gotForecast">Cork</div>
+    <div class="current-location" v-if="gotForecast">Cork</div>
+    <div class="switcher-btns">
+      <div class="hourly-btn switcher-btn" @click="showHourly">Hourly</div>
+      <div class="daily-btn switcher-btn" @click="showDaily">Daily</div>
+    </div>
     <div class="loader" v-if="!gotForecast"><img src="../assets/loader.svg"><br>Getting Weather</div>
-    <hourly v-if="gotForecast" :hourlyWeather="this.forecast.hourly"></hourly>
-    <daily v-if="gotForecast" :dailyWeather="this.forecast.daily"></daily>
+    <hourly v-if="gotForecast && showing === 'hourly'" :hourlyWeather="this.forecast.hourly"></hourly>
+    <daily v-if="gotForecast && showing === 'daily'" :dailyWeather="this.forecast.daily"></daily>
     <current class="current" v-if="gotForecast" :currentWeather="this.forecast.currently"></current>
   </div>
 </template>
@@ -27,6 +31,7 @@ export default {
     return {
       forecast: {},
       gotForecast: false,
+      showing: 'hourly'
     }
   },
 
@@ -44,6 +49,14 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+
+    showHourly() {
+      this.showing = 'hourly';
+    },
+
+    showDaily() {
+      this.showing = 'daily';
     }
   }
 
@@ -64,6 +77,21 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .current-location {
+    font-weight: bold;
+    margin: 10px;
+  }
+
+  .switcher-btns {
+    display: flex;
+    justify-content: center;
+  }
+
+  .switcher-btn {
+    margin: 5px;
+    user-select: none;
   }
 
   .current {

@@ -1,6 +1,6 @@
 <template>
   <div class="current-wrapper">
-    <div class="current-icon"><img src="../../assets/WeatherIcons/Sun.svg"></div>
+    <div class="current-icon"><img class="current-icon-img" src="../../assets/WeatherIcons/Sun.svg"></div>
     <div class="current-summary">{{ this.currentWeather.summary }}</div>
     <div class="current-temperatures">
       <div class="current-temperature">{{ Math.round(this.currentWeather.temperature) }}<span class="current-temperature-celsius">°</span></div>
@@ -46,6 +46,10 @@ export default {
   .current-icon {
     position: relative;
     left: -10px;
+  }
+
+  .current-icon-img {
+    color: yellow;
   }
 
   .current-summary {
