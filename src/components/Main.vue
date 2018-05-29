@@ -1,9 +1,10 @@
 <template>
   <div class="main-wrapper" v-bind:class="{ loading: !gotForecast }">
+    <div class="current-location" v-if="!gotForecast">Cork</div>
     <div class="loader" v-if="!gotForecast"><img src="../assets/loader.svg"><br>Getting Weather</div>
-    <current v-if="gotForecast" :currentWeather="this.forecast.currently"></current><br>
-    <hourly v-if="gotForecast" :hourlyWeather="this.forecast.hourly"></hourly><br>
+    <hourly v-if="gotForecast" :hourlyWeather="this.forecast.hourly"></hourly>
     <daily v-if="gotForecast" :dailyWeather="this.forecast.daily"></daily>
+    <current class="current" v-if="gotForecast" :currentWeather="this.forecast.currently"></current>
   </div>
 </template>
 
@@ -63,5 +64,10 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .current {
+    position: absolute;
+    bottom: 0;
   }
 </style>
