@@ -1,6 +1,5 @@
 <template>
   <div class="current-wrapper">
-    <div class="current-icon"><img class="current-icon-img" src="../../assets/WeatherIcons/Sun.svg"></div>
     <div class="current-summary">{{ this.currentWeather.summary }}</div>
     <div class="current-temperatures">
       <div class="current-temperature">{{ Math.round(this.currentWeather.temperature) }}<span class="current-temperature-celsius">°</span></div>
@@ -10,9 +9,9 @@
       </div>
     </div>
     <div class="current-extras">
-      <div class="current-pressure">Pressure<br><span class="extra-item">03.22</span></div>
-      <div class="current-wind">Wind<br><span class="extra-item">{{ Math.round(this.currentWeather.windSpeed) }} km/h</span></div>
-      <div class="current-uv-index">UV Index<br><span class="extra-item">5</span></div>
+      <div class="current-pressure"><img src="../../assets/pressure.svg" height="30" width="30"><br>Pressure<br><span class="extra-item">03.22</span></div>
+      <div class="current-wind"><img src="../../assets/wind.svg" height="30" width="30"><br>Wind<br><span class="extra-item">{{ Math.round(this.currentWeather.windSpeed) }} km/h</span></div>
+      <div class="current-uv-index"><img src="../../assets/uv.svg" height="30" width="30"><br>UV Index<br><span class="extra-item">5</span></div>
     </div>
   </div>
 </template>
@@ -38,18 +37,9 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    height: 400px;
+    height: 350px;
     color: #340653;
     margin-left: 30px;
-  }
-
-  .current-icon {
-    position: relative;
-    left: -10px;
-  }
-
-  .current-icon-img {
-    color: yellow;
   }
 
   .current-summary {

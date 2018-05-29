@@ -3,7 +3,7 @@
     <div class="hourly-hours" v-if="hasHourlyWeather" v-for="hour in hourlyForecast">
       <div class="hourly-hour">{{ hour.hour }}</div>
       <div class="hourly-temperature">{{ Math.round(hour.temperature) }}°</div>
-      <div class="hourly-wind">{{ Math.round(hour.windSpeed )}}</div>
+      <div class="hourly-precip">{{ Math.round(hour.precipProbability*100)}}%</div>
     </div>
   </div>
 </template>
@@ -50,6 +50,11 @@ export default {
     flex-direction: column;
     justify-content: center;
     margin: 5px;
+    border: 2px solid #dd0cba;
+    border-radius: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
+    /* box-shadow: 0 1px 15px 1px rgba(39,39,39,.1); */
   }
 
   ::-webkit-scrollbar {
