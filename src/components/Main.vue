@@ -1,19 +1,24 @@
 <template>
   <div class="main-wrapper">
-    <current v-if="gotForecast" :currentWeather="this.forecast.currently"></current>
-    </div>
+    <current v-if="gotForecast" :currentWeather="this.forecast.currently"></current><br>
+    <hourly v-if="gotForecast" :hourlyWeather="this.forecast.hourly"></hourly><br>
+    <daily v-if="gotForecast" :dailyWeather="this.forecast.daily"></daily>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import Current from './Sections/Current.vue'
+import Hourly from './Sections/Hourly.vue'
+import Daily from './Sections/Daily.vue'
 
 export default {
   name: 'Main',
 
   components: {
-    Current
+    Current,
+    Hourly,
+    Daily,
   },
 
   data () {
@@ -29,10 +34,9 @@ export default {
 
   methods: {
     getForecast() {
-      axios.get(`http://localhost:3000/forecast/51.9280109,-8.5922403`)
+      axios.get(`http://cianwoods.com:3000/forecast/51.9280109,-8.5922403`)
         .then(response => {
           this.forecast = response.data;
-          this.forecast.currently.temperature = Math.round(this.forecast.currently.temperature);
           this.gotForecast = true;
         })
         .catch(error => {
@@ -45,6 +49,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

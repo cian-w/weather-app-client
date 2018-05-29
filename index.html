@@ -25,6 +25,15 @@
         for (var file of chunk.files) {
           if (file.match(/\.(js|css)$/)) { %>
     <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>"><% }}} %>
+    <style>
+      #app {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-image: linear-gradient(to right top, #cae6eb, #c0dadd, #b6cecf, #acc2c1, #a3b6b4);
+        background-repeat: no-repeat;
+      }
+    </style>
   </head>
   <body>
     <noscript>
