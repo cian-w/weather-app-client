@@ -1,6 +1,6 @@
 <template>
   <div class="hourly-wrapper">
-    <div class="hourly-hours" v-if="hasHourlyForecast" v-for="hour in hourlyWeather.data.slice(1)">
+    <div class="hourly-hours" v-if="hasHourlyWeather" v-for="hour in hourlyForecast">
       <div class="hourly-hour">{{ hour.hour }}</div>
       <div class="hourly-temperature">{{ Math.round(hour.temperature) }}°</div>
       <div class="hourly-wind">{{ Math.round(hour.windSpeed )}}</div>
@@ -16,7 +16,8 @@ export default {
 
   data () {
     return {
-      hasHourlyForecast: false
+      hasHourlyWeather: false,
+      hourlyForecast: []
     }
   },
 
@@ -25,8 +26,9 @@ export default {
       let date = new Date(this.hourlyWeather.data[i].time*1000);
 
       this.hourlyWeather.data[i].hour = date.getHours();
+      this.hourlyForecast.push(this.hourlyWeather.data[i]);
     }
-    this.hasHourlyForecast = true;
+    this.hasHourlyWeather = true;
   },
 
   methods: {

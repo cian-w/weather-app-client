@@ -1,5 +1,6 @@
 <template>
-  <div class="main-wrapper">
+  <div class="main-wrapper" v-bind:class="{ loading: !gotForecast }">
+    <div class="loader" v-if="!gotForecast"><img src="../assets/loader.svg"><br>Getting Weather</div>
     <current v-if="gotForecast" :currentWeather="this.forecast.currently"></current><br>
     <hourly v-if="gotForecast" :hourlyWeather="this.forecast.hourly"></hourly><br>
     <daily v-if="gotForecast" :dailyWeather="this.forecast.daily"></daily>
@@ -50,5 +51,17 @@ export default {
 </script>
 
 <style scoped>
+  .main-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
 
+  .loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 </style>

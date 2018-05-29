@@ -1,7 +1,7 @@
 <template>
   <div class="daily-wrapper">
     Daily
-    <div class="daily-days" v-if="hasDailyForecast" v-for="day in dailyWeather.data.slice(1)">
+    <div class="daily-days" v-if="hasDailyWeather" v-for="day in dailyWeather.data.slice(1)">
       <div class="daily-day">{{ day.day }}</div>
       <div class="daily-temperature">{{ Math.round(day.temperatureMax) }}°</div>
       <div class="daily-wind">{{ Math.round(day.windSpeed )}}</div>
@@ -17,7 +17,7 @@ export default {
 
   data () {
     return {
-      hasDailyForecast: false
+      hasDailyWeather: false
     }
   },
 
@@ -34,7 +34,7 @@ export default {
       weekday[6] = "SAT";
 
       this.dailyWeather.data[i].day = weekday[date.getDay()];
-      this.hasDailyForecast = true;
+      this.hasDailyWeather = true;
     }
   }
 }
